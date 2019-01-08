@@ -1,0 +1,29 @@
+@import 'styles/_colors.scss';
+
+.forecast-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+
+  .day-header {
+    color: $silver;
+  }
+
+  .weather-icon {
+    margin: 5px 0;
+  }
+
+  .temp-footer {
+    display: flex;
+    justify-content: space-between;
+
+    .max-temp {
+      color: $gray;
+      font-weight: 500;
+    }
+
+    .min-temp {
+      color: $silver;
+    }
+  }
+}

@@ -8,7 +8,7 @@ function findCommonTempValues(arr) {
   let { temp_min: minTemp, temp_max: maxTemp } = arr[0];
   let iconCounts = {};
   let maxCount = 0;
-  let icon;
+  let icon = arr[0].icon;
 
   for (let i = 1, len = arr.length; i < len; i++) {
     let { temp_min: min, temp_max: max, icon: iconCode } = arr[i];

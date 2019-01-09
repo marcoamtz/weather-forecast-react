@@ -6,19 +6,30 @@ import './style.scss';
 const Search = ({ searchValue, onValueChange, onSearch }) => {
   const handleSearch = e => {
     e.preventDefault();
-    onSearch();
+    if (searchValue) {
+      onSearch();
+    }
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <p>Type a city name to get a 5 day forecast</p>
-      <input
-        type="text"
-        value={searchValue}
-        onChange={onValueChange}
-        placeholder="City Name"
-      />
-      <button type="submit">Get Forecast</button>
+    <form className="search-form" onSubmit={handleSearch}>
+      <div className="search-title my-4">
+        Enter a city name to get a 5 day forecast
+      </div>
+      <div className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control"
+          value={searchValue}
+          onChange={onValueChange}
+          placeholder="City Name"
+        />
+        <div className="input-group-append">
+          <button type="submit" className="btn btn-outline-primary btn-submit">
+            Get Forecast
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

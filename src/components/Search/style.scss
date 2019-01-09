@@ -1,0 +1,13 @@
+@import 'styles/_colors.scss';
+
+.search-form {
+  .search-title {
+    text-align: center;
+    color: $white;
+  }
+
+  .btn-submit {
+    color: $white;
+    border-color: $white;
+  }
+}

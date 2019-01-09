@@ -1,42 +1,38 @@
 import React, { Component } from 'react';
+import Header from 'components/Header';
 import Search from 'components/Search';
 import ForecastList from 'components/ForecastList';
+import Footer from 'components/Footer';
 import { getDailyForecastByCityName } from 'api/openweathermap';
 
-import './style.scss';
-
 class App extends Component {
-  state = { searchValue: '', forecastItems: [] };
-
-  // TODO: delete this method when finished
-  async componentDidMount() {
-    const forecastItems = await getDailyForecastByCityName('London');
-    console.log('forecast:::', forecastItems);
-    this.setState({ forecastItems });
-  }
+  state = { searchValue: '', forecastItems: [], isLoading: false };
 
   handleValueChange = e => {
     this.setState({ searchValue: e.target.value });
   };
 
   handleSearch = async () => {
+    this.setState({ isLoading: true });
     const forecastItems = await getDailyForecastByCityName(
       this.state.searchValue,
     );
-    this.setState({ forecastItems });
+    this.setState({ isLoading: false, forecastItems });
   };
 
   render() {
-    const { searchValue, forecastItems } = this.state;
+    const { searchValue, forecastItems, isLoading } = this.state;
 
     return (
-      <div className="app-container">
+      <div className="container">
+        <Header />
         <Search
           searchValue={searchValue}
           onValueChange={this.handleValueChange}
           onSearch={this.handleSearch}
         />
-        <ForecastList items={forecastItems} />
+        <ForecastList isLoading={isLoading} items={forecastItems} />
+        <Footer />
       </div>
     );
   }

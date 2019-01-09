@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Spinner from 'react-spinkit';
 import ForecastItem from 'components/ForecastItem';
 
 import './style.scss';
 
 export class ForecastList extends Component {
   static propTypes = {
+    isLoading: PropTypes.bool.isRequired,
     items: PropTypes.array.isRequired,
   };
 
   render() {
-    const { items } = this.props;
+    const { isLoading, items } = this.props;
     return (
-      <div>
-        Forecast List
-        {/* Show empty component if no items */}
-        {/* add loader component and flag */}
-        <div className="forecast-list-wrapper">
-          {items.map((item, key) => {
-            return <ForecastItem key={key} {...item} />;
-          })}
+      <div className="container text-center overflow-auto">
+        <div className="d-inline-flex forecast-list-wrapper">
+          {isLoading ? (
+            <Spinner
+              className="spinner"
+              name="line-scale"
+              color="white"
+              fadeIn="none"
+            />
+          ) : (
+            items.map((item, key) => {
+              return <ForecastItem key={key} {...item} />;
+            })
+          )}
         </div>
       </div>
     );

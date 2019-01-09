@@ -15,10 +15,10 @@ export class ForecastItem extends Component {
   render() {
     const { day, icon, maxTemp, minTemp } = this.props;
     return (
-      <span className="forecast-item">
+      <span className="d-flex flex-column forecast-item">
         <span className="day-header">{day}</span>
-        <Icon code={icon} height="4em" width="4em" className="weather-icon" />
-        <span className="temp-footer">
+        <Icon code={icon} height="5em" width="5em" className="weather-icon" />
+        <span className="d-flex justify-content-between temp-footer">
           <span className="max-temp">{Math.round(maxTemp)}°</span>
           <span className="min-temp">{Math.round(minTemp)}°</span>
         </span>

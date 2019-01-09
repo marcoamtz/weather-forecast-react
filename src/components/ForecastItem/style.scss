@@ -1,22 +1,18 @@
 @import 'styles/_colors.scss';
 
 .forecast-item {
-  display: flex;
-  flex-direction: column;
   padding: 0 15px;
 
   .day-header {
     color: $silver;
+    text-align: center;
   }
 
   .weather-icon {
-    margin: 5px 0;
+    margin: 8px 0;
   }
 
   .temp-footer {
-    display: flex;
-    justify-content: space-between;
-
     .max-temp {
       color: $gray;
       font-weight: 500;

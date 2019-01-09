@@ -5,20 +5,21 @@ import ForecastItem from 'components/ForecastItem';
 import './style.scss';
 
 export class ForecastList extends Component {
-  static propTypes = {};
+  static propTypes = {
+    items: PropTypes.array.isRequired,
+  };
 
   render() {
+    const { items } = this.props;
     return (
       <div>
         Forecast List
-        {/* Checar si no hay items para mostrar componente vacio */}
-        {/* añadir un flag para mostrar el loader */}
+        {/* Show empty component if no items */}
+        {/* add loader component and flag */}
         <div className="forecast-list-wrapper">
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
-          <ForecastItem />
+          {items.map((item, key) => {
+            return <ForecastItem key={key} {...item} />;
+          })}
         </div>
       </div>
     );

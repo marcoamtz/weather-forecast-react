@@ -4,14 +4,14 @@ const getDayOfWeek = dayNumber => {
   return DAYS_OF_WEEK[dayNumber];
 };
 
-function findCommonTempValues(arr) {
-  let { temp_min: minTemp, temp_max: maxTemp } = arr[0];
+const findCommonTempValues = items => {
+  let { temp_min: minTemp, temp_max: maxTemp } = items[0];
   let iconCounts = {};
   let maxCount = 0;
-  let icon = arr[0].icon;
+  let icon = items[0].icon;
 
-  for (let i = 1, len = arr.length; i < len; i++) {
-    let { temp_min: min, temp_max: max, icon: iconCode } = arr[i];
+  for (let i = 1, len = items.length; i < len; i++) {
+    let { temp_min: min, temp_max: max, icon: iconCode } = items[i];
 
     minTemp = min < minTemp ? min : minTemp;
     maxTemp = max > maxTemp ? max : maxTemp;
@@ -29,7 +29,7 @@ function findCommonTempValues(arr) {
   }
 
   return { minTemp, maxTemp, icon };
-}
+};
 
 export const handleApiErrors = response => {
   if (!response.ok) {

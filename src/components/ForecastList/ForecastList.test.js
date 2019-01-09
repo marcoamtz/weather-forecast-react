@@ -4,6 +4,6 @@ import ForecastList from '.';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<ForecastList />, div);
+  ReactDOM.render(<ForecastList isLoading={true} items={[]} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

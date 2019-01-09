@@ -2,7 +2,7 @@ import React from 'react';
 
 import './style.scss';
 
-const index = () => {
+const Footer = () => {
   return (
     <div className="fixed-bottom app-footer">
       <div>
@@ -28,4 +28,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Footer;

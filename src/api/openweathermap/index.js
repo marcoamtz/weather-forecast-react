@@ -21,13 +21,13 @@ export const getDailyForecastByCityName = async (
   try {
     const response = await fetchApi('/forecast', { q: cityName, units });
     const responseData = await response.json();
-    const list = responseData.list;
+    const { city, list } = responseData;
 
     const dayList = groupByDay(list);
 
     const filteredList = filterDayGroups(dayList);
 
-    return filteredList;
+    return { cityName: city.name, forecastItems: filteredList };
   } catch (e) {
     console.log('error', e);
   }

@@ -6,22 +6,26 @@ import Footer from 'components/Footer';
 import { getDailyForecastByCityName } from 'api/openweathermap';
 
 class App extends Component {
-  state = { searchValue: '', forecastItems: [], isLoading: false };
+  state = {
+    searchValue: '',
+    cityName: '',
+    forecastItems: [],
+    isLoading: false,
+  };
 
   handleValueChange = e => {
     this.setState({ searchValue: e.target.value });
   };
 
   handleSearch = async () => {
-    this.setState({ isLoading: true });
-    const forecastItems = await getDailyForecastByCityName(
-      this.state.searchValue,
-    );
-    this.setState({ isLoading: false, forecastItems });
+    this.setState({ isLoading: true, cityName: '' });
+    const response = await getDailyForecastByCityName(this.state.searchValue);
+    const { cityName, forecastItems } = response;
+    this.setState({ isLoading: false, cityName, forecastItems });
   };
 
   render() {
-    const { searchValue, forecastItems, isLoading } = this.state;
+    const { searchValue, cityName, forecastItems, isLoading } = this.state;
 
     return (
       <div className="container">
@@ -31,7 +35,11 @@ class App extends Component {
           onValueChange={this.handleValueChange}
           onSearch={this.handleSearch}
         />
-        <ForecastList isLoading={isLoading} items={forecastItems} />
+        <ForecastList
+          isLoading={isLoading}
+          name={cityName}
+          items={forecastItems}
+        />
         <Footer />
       </div>
     );

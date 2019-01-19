@@ -5,13 +5,12 @@ const getDayOfWeek = dayNumber => {
 };
 
 const findCommonTempValues = items => {
-  let { temp_min: minTemp, temp_max: maxTemp } = items[0];
+  let { temp_min: minTemp, temp_max: maxTemp, icon } = items[0];
   let iconCounts = {};
   let maxCount = 0;
-  let icon = items[0].icon;
 
-  for (let i = 1, len = items.length; i < len; i++) {
-    let { temp_min: min, temp_max: max, icon: iconCode } = items[i];
+  items.forEach(item => {
+    let { temp_min: min, temp_max: max, icon: iconCode } = item;
 
     minTemp = min < minTemp ? min : minTemp;
     maxTemp = max > maxTemp ? max : maxTemp;
@@ -26,7 +25,7 @@ const findCommonTempValues = items => {
       maxCount = iconCounts[iconCode];
       icon = iconCode;
     }
-  }
+  });
 
   return { minTemp, maxTemp, icon };
 };
@@ -52,6 +51,7 @@ export const groupByDay = daylist => {
       groupList[dayOfWeek] = [];
     }
     groupList[dayOfWeek].push(newItem);
+
     return groupList;
   }, {});
 

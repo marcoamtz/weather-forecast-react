@@ -1,47 +1,63 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
-import BrokenClouds from './BrokenClouds';
-import ClearSky from './ClearSky';
-import FewClouds from './FewClouds';
-import Mist from './Mist';
-import Rain from './Rain';
-import ScatteredClouds from './ScatteredClouds';
-import ShowerRain from './ShowerRain';
-import Snow from './Snow';
-import ThunderStorm from './ThunderStorm';
+
+const BrokenClouds = lazy(() => import('./BrokenClouds'));
+const ClearSky = lazy(() => import('./ClearSky'));
+const FewClouds = lazy(() => import('./FewClouds'));
+const Mist = lazy(() => import('./Mist'));
+const Rain = lazy(() => import('./Rain'));
+const ScatteredClouds = lazy(() => import('./ScatteredClouds'));
+const ShowerRain = lazy(() => import('./ShowerRain'));
+const Snow = lazy(() => import('./Snow'));
+const ThunderStorm = lazy(() => import('./ThunderStorm'));
 
 const Icon = ({ code, ...props }) => {
+  let Component;
   switch (code) {
     case '04d':
     case '04n':
-      return <BrokenClouds {...props} />;
+      Component = BrokenClouds;
+      break;
     case '01d':
     case '01n':
-      return <ClearSky {...props} />;
+      Component = ClearSky;
+      break;
     case '02d':
     case '02n':
-      return <FewClouds {...props} />;
+      Component = FewClouds;
+      break;
     case '50d':
     case '50n':
-      return <Mist {...props} />;
+      Component = Mist;
+      break;
     case '10d':
     case '10n':
-      return <Rain {...props} />;
+      Component = Rain;
+      break;
     case '03d':
     case '03n':
-      return <ScatteredClouds {...props} />;
+      Component = ScatteredClouds;
+      break;
     case '09d':
     case '09n':
-      return <ShowerRain {...props} />;
+      Component = ShowerRain;
+      break;
     case '13d':
     case '13n':
-      return <Snow {...props} />;
+      Component = Snow;
+      break;
     case '11d':
     case '11n':
-      return <ThunderStorm {...props} />;
+      Component = ThunderStorm;
+      break;
     default:
-      return;
+      break;
   }
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Component {...props} />
+    </Suspense>
+  );
 };
 
 Icon.propTypes = {

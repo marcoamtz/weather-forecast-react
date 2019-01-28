@@ -4,6 +4,8 @@ Node version recommended: >=10.15.0 (latest LTS)
 
 Run `npm install` inside the project's directory.
 
+Create a `.env.local` file based on `.env.example` using your own open weather API key.
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -5,13 +5,17 @@ const API_URL = process.env.REACT_APP_OPEN_WEATHER_URL;
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_KEY;
 
 const fetchApi = async (endpoint, query = {}) => {
-  const url = `${API_URL}${endpoint}?appid=${API_KEY}&${queryString.stringify(
-    query,
-  )}`;
-  const response = await fetch(url);
+  try {
+    const url = `${API_URL}${endpoint}?appid=${API_KEY}&${queryString.stringify(
+      query,
+    )}`;
+    const response = await fetch(url);
 
-  handleApiErrors(response);
-  return response;
+    handleApiErrors(response);
+    return response;
+  } catch (e) {
+    console.error('error', e);
+  }
 };
 
 export const getDailyForecastByCityName = async (
@@ -29,6 +33,6 @@ export const getDailyForecastByCityName = async (
 
     return { cityName: city.name, forecastItems: filteredList };
   } catch (e) {
-    console.log('error', e);
+    console.error('error', e);
   }
 };

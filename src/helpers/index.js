@@ -32,7 +32,7 @@ const findCommonTempValues = items => {
 
 export const handleApiErrors = response => {
   if (!response.ok) {
-    return Error(response.statusText);
+    throw new Error(response.statusText);
   }
   return response;
 };

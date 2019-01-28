@@ -1,8 +1,8 @@
 import queryString from 'query-string';
 import { handleApiErrors, groupByDay, filterDayGroups } from 'helpers';
 
-const API_URL = 'https://api.openweathermap.org/data/2.5';
-const API_KEY = '18e85b65aa42d26a401cb814c270cf92';
+const API_URL = process.env.REACT_APP_OPEN_WEATHER_URL;
+const API_KEY = process.env.REACT_APP_OPEN_WEATHER_KEY;
 
 const fetchApi = async (endpoint, query = {}) => {
   const url = `${API_URL}${endpoint}?appid=${API_KEY}&${queryString.stringify(

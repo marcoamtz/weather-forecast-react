@@ -19,8 +19,8 @@ const ForecastList = ({ isLoading, name, items }) => {
               fadeIn="none"
             />
           ) : (
-            items.map((item, key) => {
-              return <ForecastItem key={key} {...item} />;
+            items.map((item, index) => {
+              return <ForecastItem key={index} {...item} />;
             })
           )}
         </div>

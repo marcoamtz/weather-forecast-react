@@ -19,7 +19,7 @@ class App extends Component {
 
   handleSearch = async () => {
     try {
-      this.setState({ isLoading: true, cityName: '' });
+      this.setState({ isLoading: true });
       const { cityName, forecastItems } = await getDailyForecastByCityName(
         this.state.searchValue
       );

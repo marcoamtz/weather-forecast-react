@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Header from 'components/Header';
 import Search from 'components/Search';
 import ForecastList from 'components/ForecastList';
@@ -46,6 +47,7 @@ class App extends Component {
           items={forecastItems}
         />
         <Footer />
+        <ToastContainer />
       </div>
     );
   }

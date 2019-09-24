@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const getDayOfWeek = dayNumber => {
@@ -32,7 +34,7 @@ const findCommonTempValues = items => {
 
 export const handleApiErrors = response => {
   if (!response.ok) {
-    throw new Error(response.statusText);
+    toast.error(response.statusText);
   }
   return response;
 };

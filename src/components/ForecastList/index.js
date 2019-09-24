@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Spinner from 'react-spinkit';
 import ForecastItem from 'components/ForecastItem';
@@ -35,4 +35,4 @@ ForecastList.propTypes = {
   items: PropTypes.array.isRequired,
 };
 
-export default ForecastList;
+export default memo(ForecastList);

@@ -9,7 +9,12 @@
   }
 
   .weather-icon {
+    display: flex;
     margin: 8px 0;
+    align-items: center;
+    justify-content: center;
+    height: 5em;
+    width: 5em;
   }
 
   .temp-footer {

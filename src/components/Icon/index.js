@@ -1,7 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import PropTypes from 'prop-types';
+import Spinner from 'react-spinkit';
 
 const Icon = ({ code, ...props }) => {
+  const { className } = props;
   let Component;
   switch (code) {
     case '04d':
@@ -44,7 +46,16 @@ const Icon = ({ code, ...props }) => {
       break;
   }
   return (
-    <Suspense fallback={<div>Icon placeholder</div>}>
+    <Suspense
+      fallback={
+        <Spinner
+          className={className}
+          name="line-scale"
+          color="white"
+          fadeIn="none"
+        />
+      }
+    >
       <Component {...props} />
     </Suspense>
   );

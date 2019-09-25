@@ -1,5 +1,6 @@
 import queryString from 'query-string';
-import { handleApiErrors, groupByDay, filterDayGroups } from 'helpers';
+import { toast } from 'react-toastify';
+import { groupByDay, filterDayGroups } from 'helpers';
 
 const API_URL = process.env.REACT_APP_OPEN_WEATHER_URL;
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_KEY;
@@ -11,7 +12,6 @@ const fetchApi = async (endpoint, query = {}) => {
     )}`;
     const response = await fetch(url);
 
-    handleApiErrors(response);
     return response;
   } catch (error) {
     throw error;
@@ -33,6 +33,8 @@ export const getDailyForecastByCityName = async (
       const filteredList = filterDayGroups(dayList);
 
       return { cityName: city.name, forecastItems: filteredList };
+    } else {
+      toast.error(response.statusText);
     }
   } catch (error) {
     throw error;

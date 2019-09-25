@@ -1,5 +1,3 @@
-import { toast } from 'react-toastify';
-
 const DAYS_OF_WEEK = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const getDayOfWeek = dayNumber => {
@@ -30,13 +28,6 @@ const findCommonTempValues = items => {
   });
 
   return { minTemp, maxTemp, icon };
-};
-
-export const handleApiErrors = response => {
-  if (!response.ok) {
-    toast.error(response.statusText);
-  }
-  return response;
 };
 
 export const groupByDay = daylist => {

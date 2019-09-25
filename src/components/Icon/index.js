@@ -5,6 +5,7 @@ import Spinner from 'react-spinkit';
 const Icon = ({ code, ...props }) => {
   const { className } = props;
   let Component;
+
   switch (code) {
     case '04d':
     case '04n':
@@ -45,6 +46,7 @@ const Icon = ({ code, ...props }) => {
     default:
       break;
   }
+
   return (
     <Suspense
       fallback={

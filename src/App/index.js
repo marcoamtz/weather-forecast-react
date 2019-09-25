@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import Header from 'components/Header';
 import Search from 'components/Search';
@@ -6,51 +6,47 @@ import ForecastList from 'components/ForecastList';
 import Footer from 'components/Footer';
 import { getDailyForecastByCityName } from 'api/openweathermap';
 
-class App extends Component {
-  state = {
-    searchValue: '',
-    cityName: '',
-    forecastItems: [],
-    isLoading: false,
-  };
+const App = () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [cityName, setCityName] = useState('');
+  const [forecastItems, setForecastItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  handleValueChange = e => {
-    this.setState({ searchValue: e.target.value });
-  };
+  const handleValueChange = e => setSearchValue(e.target.value);
 
-  handleSearch = async () => {
+  const handleSearch = async () => {
     try {
-      this.setState({ isLoading: true });
+      setIsLoading(true);
+
       const { cityName, forecastItems } = await getDailyForecastByCityName(
-        this.state.searchValue
+        searchValue
       );
-      this.setState({ isLoading: false, cityName, forecastItems });
+
+      setCityName(cityName);
+      setForecastItems(forecastItems);
+      setIsLoading(false);
     } catch (e) {
-      this.setState({ isLoading: false });
+      setIsLoading(false);
     }
   };
 
-  render() {
-    const { searchValue, cityName, forecastItems, isLoading } = this.state;
-
-    return (
-      <div className="container">
-        <Header />
-        <Search
-          searchValue={searchValue}
-          onValueChange={this.handleValueChange}
-          onSearch={this.handleSearch}
-        />
-        <ForecastList
-          isLoading={isLoading}
-          name={cityName}
-          items={forecastItems}
-        />
-        <Footer />
-        <ToastContainer />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="container">
+      <Header />
+      <Search
+        searchValue={searchValue}
+        onValueChange={handleValueChange}
+        onSearch={handleSearch}
+      />
+      <ForecastList
+        isLoading={isLoading}
+        name={cityName}
+        items={forecastItems}
+      />
+      <Footer />
+      <ToastContainer />
+    </div>
+  );
+};
 
 export default App;
